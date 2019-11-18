@@ -16,6 +16,22 @@
 		
 		
 		<style>
+            /*
+                removes google maps logo and copyright lmao
+            */
+            a[href^="http://maps.google.com/maps"]{display:none !important}
+            a[href^="https://maps.google.com/maps"]{display:none !important}
+
+            .gmnoprint a, .gmnoprint span, .gm-style-cc {
+                display:none;
+            }
+            .gmnoprint div {
+                background:none !important;
+            }
+
+            /*
+                sidenav-bar code
+            */
 			.sidenav {
 				height: 100%;
 				width: 0;
@@ -57,28 +73,33 @@
 				.sidenav a {font-size: 18px;}
 			}
 			
+            /*
+             map code
+            */
 			#map{
 				height:100%;
 				width:100%;
-
 			}
 			
 			html, body {
-            width: 100%;
-            height: 100%;
+                width: 100%;
+                height: 100%;
             }
 
+            /*
+                placees div on top of map
+            */
             .wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
+                position: relative;
+                width: 100%;
+                height: 100%;
             }
 
             #map {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: #eee;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: #eee;
             }
 
             .content {
@@ -90,29 +111,45 @@
             opacity: .4;
             border-radius: 25px;
             }
-
-            .content-main{
+            
+            .content-right {
             position: absolute;
             padding: 1px;
+            top: 25px;
+            right: 25px;
+            background: silver;
+            opacity: .4;
+            border-radius: 25px;
+            }
+            .content-main{
+            position: absolute;
+            padding: 4px;
             top: 50px;
             left: 50%;
             margin-right: -50%;
             transform: translate(-50%, -50%);
             background: white;
-            opacity: .5;
+            opacity: .4;
             border-radius: 25px;
+           
             }
             
+            
+    
+            
 
+            
 		</style>
 	
-	</head>
+    </head>
+    
 	<body>
 	<div id="mySidenav" class="sidenav">
-        <a href="index.html">Map</a>
-        <a href="googlemaps.html">Events</a>
-        <a href="#">Search</a>
-        <a href="CUThere_Application.html">Apply</a>
+		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		  <a href="http://localhost:3000/home">Map</a>
+		  <a href="http://localhost:3000/events">Events</a>
+		  <a href="#">Search</a>
+		  <a href="http://localhost:3000/application#">Apply</a>
 	</div>
 
 
@@ -123,7 +160,10 @@
         <div class="content">
             <p class="my-2 col-2" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</p>
         </div>
-        <div class="content-main"><h1>CU There</h1></div>
+        <div class="content-right">
+            <p class="my-2 col-2" style="text-align:right;font-size:30px;cursor:pointer" onclick="openFav()">&#9733;</p>
+        </div>
+        <div class="content-main"> <img src="cutherelogo.png"  alt="ll"> </div>
       </div>
      
         
@@ -149,7 +189,7 @@
 	  function initMap(){
 
 	   map = new google.maps.Map(document.getElementById('map'),{
-			zoom:17,
+			zoom:16,
 			center: boulder,
 			disableDefaultUI:true,
 			styles: [
